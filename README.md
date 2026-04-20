@@ -18,8 +18,8 @@ git init
 git add .
 git commit -m "init: personal homepage"
 git branch -M main
-# 在 GitHub 上创建仓库：JXVision.github.io（仓库名必须等于 username.github.io）
-git remote add origin git@github.com:JXVision/JXVision.github.io.git
+# 在 GitHub 上创建仓库：Ji-XuanHe.github.io（仓库名必须等于 username.github.io）
+git remote add origin git@github.com:Ji-XuanHe/Ji-XuanHe.github.io.git
 git push -u origin main
 ```
 
