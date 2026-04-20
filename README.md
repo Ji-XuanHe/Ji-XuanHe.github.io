@@ -1,7 +1,5 @@
 # Ji-Xuan He — Personal Homepage
 
-极简学术风个人主页（参考 [peylnog.github.io](https://peylnog.github.io/)），纯 HTML + CSS，零依赖。
-
 ## 本地预览
 
 ```bash
