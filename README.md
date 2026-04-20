@@ -23,7 +23,7 @@ git remote add origin git@github.com:JXVision/JXVision.github.io.git
 git push -u origin main
 ```
 
-推送完成后 1–2 分钟，访问 **https://JXVision.github.io** 即可。
+推送完成后 1–2 分钟，访问 **https://ji-xuanhe.github.io** 即可。
 
 ## 需要你替换的内容（已在 HTML 中用占位符标出）
 
