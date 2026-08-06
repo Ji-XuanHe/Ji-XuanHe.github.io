@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏜️</text></svg>">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>青甘大环线 · 3人8日 · 8.10–8.17</title>
+<style>
+  :root{
+    --bg:#f2f4f2; --card:#fdfdfb; --ink:#232c31; --sub:#5d6b70;
+    --salt:#177e7a; --salt-soft:#e3efed; --dune:#b8722c; --dune-soft:#f6ecdd;
+    --danger:#b3452e; --danger-soft:#f7e8e2; --line:#dde2dd; --chip:#eceeea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --bg:#11181c; --card:#1a2329; --ink:#e5e7e1; --sub:#97a4a7;
+    --salt:#45b3aa; --salt-soft:#17322f; --dune:#d99a55; --dune-soft:#33271a;
+    --danger:#e07856; --danger-soft:#3a221c; --line:#2b363c; --chip:#242f35;
+  }}
+  :root[data-theme="light"]{
+    --bg:#f2f4f2; --card:#fdfdfb; --ink:#232c31; --sub:#5d6b70;
+    --salt:#177e7a; --salt-soft:#e3efed; --dune:#b8722c; --dune-soft:#f6ecdd;
+    --danger:#b3452e; --danger-soft:#f7e8e2; --line:#dde2dd; --chip:#eceeea;
+  }
+  :root[data-theme="dark"]{
+    --bg:#11181c; --card:#1a2329; --ink:#e5e7e1; --sub:#97a4a7;
+    --salt:#45b3aa; --salt-soft:#17322f; --dune:#d99a55; --dune-soft:#33271a;
+    --danger:#e07856; --danger-soft:#3a221c; --line:#2b363c; --chip:#242f35;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.75 -apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+  .wrap{max-width:780px;margin:0 auto;padding:20px 16px 64px}
+  h1,h2,h3{font-family:"Noto Serif SC","Songti SC",STSong,"SimSun",serif;line-height:1.35;text-wrap:balance;margin:0}
+  h1{font-size:30px;font-weight:900}
+  h2{font-size:22px;font-weight:800;margin:44px 0 14px;padding-left:12px;border-left:5px solid var(--salt)}
+  h3{font-size:17px;font-weight:700;margin:18px 0 8px}
+  p{margin:8px 0}
+  a{color:var(--salt)}
+  .sub{color:var(--sub);font-size:14px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .chip{display:inline-block;background:var(--chip);border-radius:4px;padding:1px 8px;font-size:13px;color:var(--sub);margin:2px 6px 2px 0;white-space:nowrap}
+  .chip b{color:var(--ink)}
+
+  header.hero{padding:8px 0 4px}
+  .routeline{margin:14px 0 4px;font-family:var(--mono);font-size:13.5px;color:var(--sub);
+    display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px}
+  .routeline b{color:var(--salt);font-size:14.5px}
+  .routeline .arr{color:var(--dune)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .urgent{border-left:5px solid var(--danger);background:var(--card)}
+  .urgent h2{border:none;padding:0;margin:0 0 6px;color:var(--danger)}
+  .urgent ol{margin:8px 0 2px;padding-left:22px}
+  .urgent li{margin:9px 0}
+  .urgent li b{color:var(--danger)}
+  .ddl{font-size:12.5px;color:var(--danger);background:var(--danger-soft);border-radius:4px;padding:0 6px;white-space:nowrap;font-family:var(--mono)}
+
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  .tblbox{overflow-x:auto;margin:10px 0;border:1px solid var(--line);border-radius:8px}
+  .tblbox table{min-width:560px}
+  th{background:var(--chip);text-align:left;font-weight:600;color:var(--sub);font-size:13px}
+  th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.mono,th.mono{font-family:var(--mono);white-space:nowrap}
+
+  .day{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:18px 0;overflow:hidden}
+  .dayhead{display:flex;align-items:baseline;gap:12px;padding:14px 18px 10px;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+  .daynum{font-family:var(--mono);font-size:13px;color:var(--salt);letter-spacing:.12em}
+  .daydate{font-family:"Noto Serif SC","Songti SC",serif;font-size:22px;font-weight:900}
+  .daytitle{font-size:16.5px;font-weight:700}
+  .daymeta{width:100%;margin-top:2px}
+  .daybody{padding:12px 18px 16px}
+  .slot{display:flex;gap:12px;margin:7px 0;align-items:baseline}
+  .slot .t{font-family:var(--mono);font-size:13.5px;color:var(--salt);min-width:88px;white-space:nowrap;font-weight:600}
+  .slot .d{flex:1}
+  .slot .d small{color:var(--sub)}
+
+  .train{border:1.5px dashed var(--salt);border-radius:8px;background:var(--salt-soft);
+    padding:10px 14px;margin:10px 0;font-size:14.5px}
+  .train .code{font-family:var(--mono);font-weight:700;color:var(--salt);font-size:16px}
+  .train .tt{font-family:var(--mono);font-weight:700}
+  .train small{color:var(--sub);display:block;margin-top:2px}
+
+  .opt{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:10px 0}
+  .opt .tag{display:inline-block;font-size:12.5px;font-weight:700;color:var(--salt);border:1px solid var(--salt);border-radius:4px;padding:0 7px;margin-right:6px}
+  .opt.rec{border-color:var(--salt);background:var(--salt-soft)}
+  .opt.rec .tag{background:var(--salt);color:var(--card)}
+
+  .warn{background:var(--danger-soft);border-radius:8px;padding:9px 13px;margin:10px 0;font-size:14px}
+  .warn::before{content:"⚠ ";color:var(--danger);font-weight:700}
+  .tip{background:var(--dune-soft);border-radius:8px;padding:9px 13px;margin:10px 0;font-size:14px}
+  .tip::before{content:"💡 ";}
+
+  .hotel{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:10px 0}
+  .hotel b.nm{font-size:15.5px}
+  .price{color:var(--dune);font-weight:700;font-family:var(--mono)}
+
+  nav.toc{position:sticky;top:0;z-index:9;background:var(--bg);padding:8px 0;margin:0 -16px;
+    border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  nav.toc .in{padding:0 16px;display:flex;gap:8px}
+  nav.toc a{text-decoration:none;font-size:13px;color:var(--sub);background:var(--chip);border-radius:14px;padding:3px 11px}
+  nav.toc a:hover{color:var(--salt)}
+
+  .foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  ul{margin:6px 0;padding-left:22px}
+  li{margin:5px 0}
+  @media print{
+    nav.toc{display:none}
+    body{background:#fff}
+    .day,.card{break-inside:avoid;border-color:#bbb}
+    .wrap{max-width:100%;padding:0}
+    a{color:inherit;text-decoration:none}
+  }
+  @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="sub mono">2026.08.10 — 08.17 · 3人 · 火车＋当地拼车（不自驾）</div>
+  <h1>青甘大环线 · 8日行程册</h1>
+  <div class="routeline">
+    <b>西安</b><span class="arr">→</span><b>西宁</b><span class="arr">→</span>(青海湖·茶卡)<span class="arr">→</span><b>德令哈</b><span class="arr">→</span><b>格尔木</b><span class="arr">→</span>翡翠湖<span class="arr">→</span>黑独山<span class="arr">→</span><b>敦煌</b><span class="arr">→</span><b>西安</b>
+  </div>
+  <div>
+    <span class="chip">铁路 4 段全程有票<b>（8.6 实查）</b></span>
+    <span class="chip">最高过夜海拔 <b>德令哈 2980m</b></span>
+    <span class="chip">全程约 <b>2600km</b></span>
+    <span class="chip">预算约 <b>¥4000–5000/人</b></span>
+  </div>
+</header>
+
+<nav class="toc"><div class="in">
+  <a href="#urgent">⚡今天就办</a><a href="#overview">总览</a><a href="#d1">D1</a><a href="#d2">D2</a><a href="#d3">D3</a><a href="#d4">D4</a><a href="#d5">D5</a><a href="#d6">D6</a><a href="#d7">D7</a><a href="#d8">D8</a><a href="#tickets">车票</a><a href="#booking">门票预约</a><a href="#hotel">住宿</a><a href="#budget">预算</a><a href="#risk">风险</a>
+</div></nav>
+
+<section class="card urgent" id="urgent">
+  <h2>⚡ 立刻要办（按顺序，今天 8.6 就动手）</h2>
+  <ol>
+    <li><b>莫高窟门票</b>：微信小程序「莫高窟参观预约网」（唯一官方渠道），下单 <b>8.16 上午场 常规票×3</b>（238元/人，一单填齐3人身份证）。官方售罄公告目前只覆盖到8.6，8.15/8.16还没售罄，但规律是<b>参观日前0–4天清空</b>。抢不到：每天 <b>06:55 设闹钟</b>刷07:00回流票；还可用第二个手机号另押8.15。<span class="ddl">窗口正在关闭</span></li>
+    <li><b>火车票（12306）</b>：按紧张程度顺序买——① 8.17 Z261 敦煌→西安 卧铺×3（全程最高危段）② 8.10 D2685 西安北→西宁×3 ③ 8.12 C895 西宁→德令哈×3 ④ 8.13 C4381 德令哈→格尔木×3。8.6 实查全部有票，暑运余票分钟级变动。<span class="ddl">今天买齐</span></li>
+    <li><b>黑独山预约</b>：微信小程序「黑独山景区」实名预约 <b>8.14</b> ×3（门票免费、往返景交60元/人必买，提前15天开约）。<span class="ddl">今天约</span></li>
+    <li><b>鸣沙山月牙泉门票</b>：「鸣沙山月牙泉」公众号买 <b>8.15</b> ×3（110元/人，购票日起3天内可多次刷脸入园；2026年起全线上售票，现场不卖）。<span class="ddl">最早提前15天</span></li>
+    <li><b>8.14 拼车团</b>：订「格尔木→翡翠湖＋黑独山→敦煌」一日游（去哪儿 detail_3679461 ¥340起/4.9分247评，或携程 t107655704）。2人起发团，3人稳成行；平台要求<b>出行前1天22:00前下单</b>，别拖到8.13。<span class="ddl">建议今天订</span></li>
+    <li><b>酒店</b>：敦煌3晚最紧（8.14周五/8.15周六），今天锁定；实操上<b>订两间标间</b>比等三人间容易，优先<b>可免费取消</b>房源。西宁2晚、德令哈1晚、格尔木1晚同步订。<span class="ddl">敦煌今天订</span></li>
+    <li><b>青海湖＋茶卡一日团</b>（若选D2方案A）：提前1–2天下单并电话确认成团；问清报价是<b>人均还是整车</b>。</li>
+    <li><b>察尔汗盐湖</b>（若8.13去）：「青海文旅」小程序分时段实名预约；跟司机确认<b>能进盐厂厂区</b>（需车辆入访登记）。</li>
+    <li><b>药与装备</b>：8.8–8.9 配<b>乙酰唑胺</b>（处方药，磺胺过敏者禁用；提前1–2天开始服）；红景天现在吃已来不及。防晒SPF50+、墨镜、宽檐帽、薄羽绒/抓绒、盐湖用一次性鞋套、离线地图。</li>
+  </ol>
+</section>
+
+<h2 id="overview">行程总览</h2>
+<div class="tblbox"><table>
+  <tr><th>日期</th><th>主线</th><th class="mono">交通</th><th>睡在哪</th></tr>
+  <tr><td class="mono">8.10 一</td><td>西安→西宁 · 东关清真大寺＋莫家街</td><td class="mono">D2685 09:00→12:49</td><td>西宁</td></tr>
+  <tr><td class="mono">8.11 二</td><td>青海湖＋茶卡一日团（备选：茶卡专列 / 塔尔寺）</td><td class="mono">拼车 06:00–22:00</td><td>西宁</td></tr>
+  <tr><td class="mono">8.12 三</td><td>上午西宁自由活动 · 下午赴德令哈 · 巴音河日落</td><td class="mono">C895 13:35→17:12</td><td>德令哈</td></tr>
+  <tr><td class="mono">8.13 四</td><td>德令哈半日 · 午后赴格尔木 · 察尔汗盐湖日落</td><td class="mono">C4381 13:11→15:20</td><td>格尔木</td></tr>
+  <tr><td class="mono">8.14 五</td><td>拼车穿越：翡翠湖→黑独山→晚抵敦煌</td><td class="mono">拼车 06:30–21:00</td><td>敦煌</td></tr>
+  <tr><td class="mono">8.15 六</td><td>白天休整 · 傍晚鸣沙山日落＋星空演唱会</td><td class="mono">市内</td><td>敦煌</td></tr>
+  <tr><td class="mono">8.16 日</td><td>莫高窟（上午场）· 下午休整/二刷鸣沙山</td><td class="mono">市内</td><td>敦煌</td></tr>
+  <tr><td class="mono">8.17 一</td><td>上午敦煌闲逛 · 卧铺回西安（次日10:40到）</td><td class="mono">Z261 13:35→翌10:40</td><td>火车上</td></tr>
+</table></div>
+<p class="sub">对你们原计划的三处关键修改：① 删掉 8.13 可可西里（海拔一天拉升2000米、11.5小时坐车，核验结论"风险收益比全线最低"），换成 8.11 青海湖＋茶卡——原计划整条线其实错过了青甘环线最经典的两个湖；② 察尔汗提前到 8.13 傍晚——"察尔汗＋翡翠湖＋黑独山"三点一天串到敦煌物理上不可行（约700km，会被黑独山18:20停售卡死），市面上也没有这种产品；③ 德令哈近郊降级——柏树山/琉璃湖方向道路7月15日起汛期封闭，托素湖·外星人遗址2025年6月起暂停营业，老攻略里的"德令哈近郊一日"现在基本不存在。</p>
+
+<h2>每日详单</h2>
+
+<section class="day" id="d1">
+  <div class="dayhead">
+    <span class="daynum">DAY 1</span><span class="daydate">8.10 周一</span><span class="daytitle">西安 → 西宁 · 抵达日</span>
+    <div class="daymeta"><span class="chip">西宁海拔 <b>2261m</b></span><span class="chip">日落 <b>20:12</b></span><span class="chip">22–26℃ / 夜10–13℃</span></div>
+  </div>
+  <div class="daybody">
+    <div class="train">🚄 <span class="code">D2685</span> 西安北 <span class="tt">09:00</span> → 西宁 <span class="tt">12:49</span> · 3h49m · 二等座 ¥271
+      <small>8.6实查：二等/一等均"有"。备选：D2649 07:10→11:41（¥271）｜D2661 11:42→16:18｜G3177 14:51→18:53。你们说的"咸阳西站"没记错（原咸阳秦都站2021年更名），D2651 08:25 / D2723 09:56 从咸阳西上车还便宜10元。</small></div>
+    <div class="slot"><span class="t">13:00</span><div class="d">出站打车去大十字/莫家街一带酒店放行李 <small>（约4km，12–18元）</small></div></div>
+    <div class="slot"><span class="t">15:30</span><div class="d">东关清真大寺 <small>（免费，30–40分钟；今天周一开放；穿长裤长袖，女生可在南展厅免费借长袍；18:00后礼拜时段谢绝入内）</small></div></div>
+    <div class="slot"><span class="t">17:00</span><div class="d">莫家街觅食：德禄酸奶（8–12元）→ 马忠食府一站吃齐酿皮/甜醅/烤串/青海土火锅 <small>（3人约180–240元；硬核选项：益鑫手抓羊肉馆，约50元/斤）</small></div></div>
+    <div class="slot"><span class="t">19:00</span><div class="d">水井巷压马路 <small>（买干果务必当面复秤、确认单位）</small></div></div>
+    <div class="slot"><span class="t">20:00</span><div class="d">大新街夜市感受烟火气，吃两串就好 <small>（改造后网红摊涨价，性价比不如莫家街）</small></div></div>
+    <div class="slot"><span class="t">21:30</span><div class="d">回酒店早睡——今天是海拔适应日，不喝酒、不剧烈运动</div></div>
+    <div class="warn">8.10是周一，<b>青海省博物馆闭馆</b>——别排。西宁小吃店21:30后陆续打烊，别按西安的节奏安排宵夜。</div>
+  </div>
+</section>
+
+<section class="day" id="d2">
+  <div class="dayhead">
+    <span class="daynum">DAY 2</span><span class="daydate">8.11 周二</span><span class="daytitle">青海湖 ＋ 茶卡盐湖（住西宁）</span>
+    <div class="daymeta"><span class="chip">茶卡海拔 <b>3059m</b></span><span class="chip">茶卡日落 <b>20:22</b></span><span class="chip">湖区白天17–22℃，带外套</span></div>
+  </div>
+  <div class="daybody">
+    <div class="opt rec"><span class="tag">方案A·推荐</span><b>青海湖二郎剑＋茶卡盐湖 一日拼车团</b><br>
+      06:00–06:30 西宁出发 → 上午青海湖（门票90元，9点前入园错峰）→ 下午茶卡（门票60元、小火车往返100元可选）→ 21:30–22:30 回西宁。全天约600km、15小时。拼车费约150–260元/人<small>（去哪儿一款标"¥760起"疑为整车价，下单前问清人均还是包车）</small>。<br>
+      <small>为什么值得：你们原计划全程没有青海湖和茶卡——这是青甘环线的两张招牌；翡翠湖/察尔汗补得了"盐湖"，补不了高原大湖＋环湖草原。</small></div>
+    <div class="opt"><span class="tag">方案B·省力</span><b>「天空之镜号」茶卡专列往返</b>（只有茶卡，无青海湖）<br>
+      <span class="mono">Y837</span> 西宁 09:25→茶卡 13:48（硬座62.5元，8.6有票）· 茶卡站步行300m进景区，游约3.5h · <span class="mono">Y838</span> 17:40→西宁 22:50。<small>缺点：13:48才到，下午湖面常起风，"天空之镜"效果打折。</small></div>
+    <div class="opt"><span class="tag">方案C·原计划风格</span><b>不去湖区：上午塔尔寺或省博，下午直接去德令哈</b>——整条线提前一天，敦煌末尾多出一天机动（可加西线玉门关＋雅丹）。塔尔寺：门票70元，打车单程60–70元/35分钟，请导游160元/队很值，全程半天。</div>
+    <div class="warn">西宁是全线雨最多的一站（8月雨日13.8天）。若前一晚预报<b>降水概率&gt;40%</b>，果断切方案C——阴雨天的茶卡出不了片。</div>
+  </div>
+</section>
+
+<section class="day" id="d3">
+  <div class="dayhead">
+    <span class="daynum">DAY 3</span><span class="daydate">8.12 周三</span><span class="daytitle">西宁 → 德令哈 · 巴音河日落</span>
+    <div class="daymeta"><span class="chip">德令哈海拔 <b>2980m</b></span><span class="chip">日落 <b>20:29</b> · 天黑 20:57</span><span class="chip">全程高反风险最高的一晚</span></div>
+  </div>
+  <div class="daybody">
+    <div class="slot"><span class="t">上午</span><div class="d">睡饱 → 二选一：青海省博物馆（周三开放，9:00起，免费，公众号预约，看1.5–2h）或 莫家街早点＋补觉 <small>（昨天16小时团，别硬塞塔尔寺）</small></div></div>
+    <div class="train">🚄 <span class="code">C895</span> 西宁 <span class="tt">13:35</span> → 德令哈 <span class="tt">17:12</span> · 3h37m · 二等座 ¥134
+      <small>8.6实查"有"。备选：C893 12:40→15:59（¥153）｜K6821 13:45→18:31（硬卧129，全席别有票，最稳兜底）。⚠️下午能用的车全天仅5–6班，是全线最容易没票的一段，今天就买。</small></div>
+    <div class="slot"><span class="t">17:30</span><div class="d">打车约10元入住市中心/巴音河沿线酒店，放行李缓一缓</div></div>
+    <div class="slot"><span class="t">18:30</span><div class="d">海子诗歌陈列馆 <small>（免费，开到21:00；出门左转80米就是诗歌广场下河步道）</small>——"姐姐，今夜我在德令哈"</div></div>
+    <div class="slot"><span class="t">19:30</span><div class="d">巴音河滨河步道选机位（情人桥一带），<b>20:29 日落</b>，之后看两岸夜景灯光</div></div>
+    <div class="slot"><span class="t">21:30</span><div class="d">柴达木路一带晚餐，早睡。<small>今晚从2261m升到2980m并首次在高处过夜：不喝酒、不洗过烫的澡、七分饱、多喝水</small></div></div>
+    <div class="warn">柏树山→哈拉湖/琉璃湖（奶子湖）道路<b>7月15日起汛期封闭</b>；托素湖·外星人遗址<b>2025年6月起暂停营业</b>（遗址已被湖水淹没）。老攻略里的德令哈近郊景点这次基本都去不了，行程已按"轻量站"设计，不吃亏。</div>
+  </div>
+</section>
+
+<section class="day" id="d4">
+  <div class="dayhead">
+    <span class="daynum">DAY 4</span><span class="daydate">8.13 周四</span><span class="daytitle">德令哈 → 格尔木 · 察尔汗盐湖日落</span>
+    <div class="daymeta"><span class="chip">格尔木海拔 <b>2780m</b>（比德令哈低，今天是"下降日"）</span><span class="chip">察尔汗日落 <b>20:35</b></span></div>
+  </div>
+  <div class="daybody">
+    <div class="slot"><span class="t">上午</span><div class="d">睡到自然醒 → 巴音河白天水色再走一段 <small>（可选加赌：打车去柏树山山门碰运气，往返2h，进不去就撤，不影响午后火车）</small></div></div>
+    <div class="train">🚄 <span class="code">C4381</span> 德令哈 <span class="tt">13:11</span> → 格尔木 <span class="tt">15:20</span> · 2h09m · 二等座 ¥57
+      <small>8.6实查"有"（此车为暑期临客）。备选：7585 13:22→17:05（硬座34.5）｜C893 16:01→18:10｜K6821 18:35→21:31（全席别有票）。格尔木站就在市区里，打车到酒店起步价即到。</small></div>
+    <div class="slot"><span class="t">16:00</span><div class="d">包车往返察尔汗盐湖 <small>（单程60km/1h，整车往返谈250–350元；<b>务必确认司机可进盐厂厂区</b>＋提前"青海文旅"小程序预约）</small></div></div>
+    <div class="slot"><span class="t">17:00</span><div class="d">察尔汗：万丈盐桥、盐花、翡翠色采卤渠 <small>（门票+景交约100元/人，观光车必坐；17点后斜光湖色最深，运气好有天空之镜）</small></div></div>
+    <div class="slot"><span class="t">19:45</span><div class="d">看完 <b>20:35 日落</b>前的黄金光线返程，21:00前回市区晚餐（昆仑路一带）</div></div>
+    <div class="tip">察尔汗"天空之镜"需要<b>无风＋晴天</b>同时成立，而8月格尔木正处多风季。前一晚查风力预报：<b>风&gt;3级或阴天就放弃</b>，改成市区休整——别顶风白跑，明天的翡翠湖不怕阴天，能兜底。</div>
+    <div class="warn"><b>可可西里一日游为什么删</b>：产品合规存在（¥252起、赠氧、07:30–19:00），但一天从2780m拉到昆仑山口<b>4768m</b>（净升约2000m）、11.5小时基本在坐车、8月中旬藏羚羊回迁尾声难遇、次日又是14小时长途——对3个无高原经验的人，这是全线风险收益比最差的一天。若执意去：察尔汗就得挪到8.14并放弃翡翠湖或黑独山之一；任何人昨晚在德令哈有头痛/失眠/食欲差，无条件取消。</div>
+  </div>
+</section>
+<section class="day" id="d5">
+  <div class="dayhead">
+    <span class="daynum">DAY 5</span><span class="daydate">8.14 周五</span><span class="daytitle">格尔木 → 翡翠湖 → 黑独山 → 敦煌 · 拼车穿越日</span>
+    <div class="daymeta"><span class="chip">全天约 <b>600km · 14小时</b></span><span class="chip">途翻当金山口 <b>3648m</b></span><span class="chip">翡翠湖日落 20:36 · 黑独山 20:45</span></div>
+  </div>
+  <div class="daybody">
+    <div class="slot"><span class="t">06:30</span><div class="d">拼车司机酒店上门接（前一晚电话再确认时间；带足水和干粮，途中补给点少，黑独山一带约300km无加油站）</div></div>
+    <div class="slot"><span class="t">09:00</span><div class="d"><b>大柴旦翡翠湖</b> 游2小时 <small>（门票50＋小火车往返60＝110元/人，现场自付；上午风小、倒影最完整；07:30开园）</small></div></div>
+    <div class="slot"><span class="t">12:00</span><div class="d">大柴旦镇午餐（约0.5–1h）</div></div>
+    <div class="slot"><span class="t">15:30</span><div class="d"><b>黑独山</b>（茫崖市冷湖镇，G215旁）游约2小时 <small>（景交车60元/人必买、15:00后85折约51元；提前小程序实名预约；水墨戈壁"地球上的月球"，阴天反而更出片；18:20停止售票——这就是为什么必须早出发）</small></div></div>
+    <div class="slot"><span class="t">17:30</span><div class="d">出发赴敦煌（约250–277km / 3.5–4h）</div></div>
+    <div class="slot"><span class="t">21:00</span><div class="d">抵敦煌市区酒店 → <b>沙洲夜市宵夜</b> <small>（营业到凌晨3点：驴肉黄面认准达记/顺张、胡羊焖饼找国辉、人手一杯现熬杏皮水）</small></div></div>
+    <div class="train">🚐 拼车产品：去哪儿「格尔木敦煌｜黑独山、大柴旦翡翠湖一日游」detail_3679461 <b>¥340起/人</b>（4.9分/247条评价，5/7/9座，2–8人纯玩，格尔木酒店接→敦煌市区散团）
+      <small>备选：携程 t107655704 ¥340起。规则：出行前1天22:00前必须下单、前2天00:00前退款免手续费——今天订最稳。"送航拍"需提前两周约，这次赶不上，别为它加钱。</small></div>
+    <div class="warn">今天从格尔木2780m经大柴旦3100m翻当金山口3648m再降到敦煌1140m——山口只是坐车快速通过，风险不大，但午饭别吃撑、车上备着便携氧。到敦煌海拔骤降，之后两天会越来越舒服。</div>
+  </div>
+</section>
+
+<section class="day" id="d6">
+  <div class="dayhead">
+    <span class="daynum">DAY 6</span><span class="daydate">8.15 周六</span><span class="daytitle">敦煌 · 鸣沙山月牙泉 · 星空演唱会</span>
+    <div class="daymeta"><span class="chip">敦煌海拔 <b>1140m</b></span><span class="chip">日落 <b>20:41</b> · 天黑 21:10</span><span class="chip">白天33–36℃，昼夜温差大</span></div>
+  </div>
+  <div class="daybody">
+    <div class="slot"><span class="t">上午</span><div class="d">睡到自然醒——昨天14小时车，今天上午就是用来休整的。有精神可去敦煌博物馆（免费）或党河风情线走走</div></div>
+    <div class="slot"><span class="t">12:00–17:00</span><div class="d">酒店躲太阳午休 <small>（沙面温度中午可超50℃，绝对不要中午进鸣沙山）</small></div></div>
+    <div class="slot"><span class="t">17:30</span><div class="d">打车去鸣沙山中门（5–6km，约15元；中门离月牙泉核心区最近）</div></div>
+    <div class="slot"><span class="t">18:00</span><div class="d"><b>入园</b>（票110元/人已线上买好，刷身份证＋人脸；租鞋套15–20元）→ 骑骆驼（100–130元，约40分钟）或滑沙 → 月牙泉</div></div>
+    <div class="slot"><span class="t">19:30</span><div class="d">上2号栈道半山腰占位（祈福长廊对面山坡）</div></div>
+    <div class="slot"><span class="t">20:41</span><div class="d"><b>日落</b> → 蓝调时刻 → <b>21:10前后 万人星空演唱会</b>（含在门票内）→ 约22:00无人机灯光秀，22:30左右散场</div></div>
+    <div class="slot"><span class="t">22:40</span><div class="d">坐<b>免费公交专线</b>回市区（坐满即发、一站直达，首班20:30/末班23:00）——住市区完全不愁回程</div></div>
+    <div class="warn">看演唱会务必<b>19:00前入园</b>（官方入园截止有19:30与20:30两种口径，别赌晚的）。演唱会遇暴雨大风会临时取消，出门前看「鸣沙山月牙泉」公众号当日公告。</div>
+    <div class="tip">门票<b>3日内可多次刷脸入园</b>：8.15晴就今天看日落＋演唱会；若8.15阴天8.16晴，可与莫高窟对调（莫高窟在洞窟里不怕天气，改签一次免费）。还想看沙漠日出的，8.16清晨06:00前再免费进一次（日出06:55）。</div>
+  </div>
+</section>
+
+<section class="day" id="d7">
+  <div class="dayhead">
+    <span class="daynum">DAY 7</span><span class="daydate">8.16 周日</span><span class="daytitle">敦煌 · 莫高窟</span>
+    <div class="daymeta"><span class="chip">常规票全程约 <b>3–3.5小时</b></span><span class="chip">带身份证原件×3</span></div>
+  </div>
+  <div class="daybody">
+    <div class="slot"><span class="t">07:45</span><div class="d">出发去<b>莫高窟数字展示中心</b>（阳关东路8899号，市区打车约9km；也可乘3路公交2元）——窟区不设售票处，别直接导航莫高窟</div></div>
+    <div class="slot"><span class="t">08:30</span><div class="d">按预约场次<b>提前30分钟</b>到：北入口 → 自助机打印「购票信息单」（凭身份证原件）→ 展1馆检票</div></div>
+    <div class="slot"><span class="t">09:00</span><div class="d">看两部数字电影《千年莫高》《梦幻佛宫》（约40分钟）→ 摆渡车15km进窟区 → 25–30人一组配讲解员看<b>8个洞窟</b> → 藏经洞陈列馆/院史馆（凭票免费）</div></div>
+    <div class="slot"><span class="t">13:00</span><div class="d">摆渡车返回，回市区午餐（驴肉黄面）。<small>行李箱和20寸以上包不能进窟区，展1馆有寄存；洞窟内严禁拍照。</small></div></div>
+    <div class="slot"><span class="t">下午</span><div class="d">休整 / 沙洲市场买特产（李广杏干、夜光杯）/ 或用三日票二刷鸣沙山日落</div></div>
+    <div class="slot"><span class="t">晚上</span><div class="d">最后一顿沙洲夜市，回酒店收拾行李</div></div>
+    <div class="warn">若8.16遇强降雨闭窟（今年7月29日真实发生过一次），官方全额退款但不补位——备案：当天改去<b>西千佛洞</b>（30元/人，4窟+免费讲解，距市区35km，同一个预约体系），或8.17上午用Z261发车前的窗口抢救。</div>
+  </div>
+</section>
+
+<section class="day" id="d8">
+  <div class="dayhead">
+    <span class="daynum">DAY 8</span><span class="daydate">8.17 周一</span><span class="daytitle">敦煌 → 西安 · 返程</span>
+    <div class="daymeta"><span class="chip">敦煌站距市区12km，打车约30元/20分钟</span></div>
+  </div>
+  <div class="daybody">
+    <div class="opt rec"><span class="tag">推荐</span><b>Z261 直达卧铺</b>：敦煌 <span class="mono">13:35</span> → 西安站 <span class="mono">次日8.18 10:40</span>（21h05m）<br>
+      硬卧 ¥343×3＝<span class="price">¥1029</span>；软卧 ¥542×3＝<span class="price">¥1626</span>（3人正好包下4人包厢的3个铺）。8.6实查硬卧/软卧均"有"。<br>
+      <small>好处：8.17上午还能逛党河/买特产，省一晚房费，躺着回家。注意终到<b>西安站</b>（不是西安北）。</small></div>
+    <div class="opt"><span class="tag">当天到家</span><b>D2739 直达动车</b>：敦煌 <span class="mono">08:40</span> → 西安北 <span class="mono">19:13</span>（10h33m），二等座 ¥549×3＝<span class="price">¥1647</span>。8.6实查"有"。7:40就得从市区出发。</div>
+    <div class="opt"><span class="tag">最快</span><b>飞机</b>：敦煌莫高机场→西安咸阳，东航每日2班＋长安航空，约2h15m，旺季约900–1300元/人。机场距市区13km。</div>
+    <div class="warn">不要考虑柳园南中转：8.6实查8.17柳园南→西安方向<b>几乎全线无票</b>（6趟车不可网售），还要多跑128km接驳——敦煌站直发就是最优。</div>
+  </div>
+</section>
+
+<h2 id="tickets">车票速查（余票为 8.6 16:30 北京时间 12306 实查快照）</h2>
+<div class="tblbox"><table>
+  <tr><th>日期</th><th class="mono">区段</th><th class="mono">首选</th><th class="mono">时刻</th><th class="mono">票价/人</th><th>余票</th><th class="mono">备选</th></tr>
+  <tr><td class="mono">8.10</td><td class="mono">西安北→西宁</td><td class="mono"><b>D2685</b></td><td class="mono">09:00→12:49</td><td class="mono">二等271</td><td>有</td><td class="mono">D2649 07:10 / D2661 11:42 / G3177 14:51</td></tr>
+  <tr><td class="mono">8.10</td><td class="mono">咸阳西→西宁</td><td class="mono">D2651</td><td class="mono">08:25→12:35</td><td class="mono">二等270</td><td>有</td><td class="mono">D2723 09:56 / D2725 10:25（避开D2717，已停售）</td></tr>
+  <tr><td class="mono">8.11</td><td class="mono">西宁⇌茶卡（选专列时）</td><td class="mono">Y837/Y838</td><td class="mono">09:25→13:48 / 17:40→22:50</td><td class="mono">硬座62.5</td><td>有</td><td class="mono">—</td></tr>
+  <tr><td class="mono">8.12</td><td class="mono">西宁→德令哈</td><td class="mono"><b>C895</b></td><td class="mono">13:35→17:12</td><td class="mono">二等134</td><td>有</td><td class="mono">C893 12:40 / K6821 13:45（硬卧129，全席别有）</td></tr>
+  <tr><td class="mono">8.13</td><td class="mono">德令哈→格尔木</td><td class="mono"><b>C4381</b></td><td class="mono">13:11→15:20</td><td class="mono">二等57</td><td>有</td><td class="mono">7585 13:22（34.5）/ C893 16:01 / K6821 18:35</td></tr>
+  <tr><td class="mono">8.14</td><td class="mono">格尔木→敦煌</td><td colspan="4">🚫 铁路无直达（12306四个日期实查均为空）——走拼车，正好顺路刷两个景点</td><td class="mono">大巴09:00发￥150（纯代步）</td></tr>
+  <tr><td class="mono">8.17</td><td class="mono">敦煌→西安</td><td class="mono"><b>Z261</b></td><td class="mono">13:35→次日10:40</td><td class="mono">硬卧343/软卧542</td><td>有</td><td class="mono">D2739 08:40→19:13（二等549，有）</td></tr>
+</table></div>
+<ul class="sub">
+  <li>12306预售期15天，全部日期已在售；余票>20显示"有"。暑运余票分钟级变动，以下单时为准，售罄先挂<b>候补</b>（兑现率不低）。</li>
+  <li>兜底技巧：西安北→西宁若整段无票，拆「西安北→兰州西」＋「兰州西→西宁」两段买；敦煌→西安同理可拆兰州西。</li>
+  <li>普速临客 K6821（西宁→德令哈→格尔木）7.13–8.31每日开行，是两段共用的最稳兜底车。</li>
+</ul>
+
+<h2 id="booking">门票与预约渠道汇总</h2>
+<div class="tblbox"><table>
+  <tr><th>项目</th><th class="mono">价格/人</th><th>唯一/官方渠道</th><th>要点</th></tr>
+  <tr><td><b>莫高窟</b>·常规票</td><td class="mono">238</td><td>微信小程序「莫高窟参观预约网」</td><td>8窟＋2场数字电影＋摆渡＋讲解；单日6000张；一个账号30天限下一单（最多5张），<b>一单填齐3人</b>；每单可免费改期/场一次（不可改票种）；系统每日07:00–22:00开放</td></tr>
+  <tr><td>莫高窟·石窟票（捡漏首选）</td><td class="mono">190</td><td>同上/现场窗口</td><td>同样看<b>8窟</b>只是不含电影——比100元应急票体验好得多</td></tr>
+  <tr><td>莫高窟·应急票</td><td class="mono">100</td><td>同上</td><td>仅4窟无讲解；单日12000张；票面时间前后1小时均可入园；可现场加50元观影票凑齐体验</td></tr>
+  <tr><td><b>鸣沙山月牙泉</b></td><td class="mono">110</td><td>公众号「鸣沙山月牙泉」（现场不售票）</td><td>3日内多次刷脸入园；星空演唱会含在票内（6.15起每晚，极端天气除外）</td></tr>
+  <tr><td><b>黑独山</b></td><td class="mono">0＋景交60</td><td>小程序「黑独山景区」实名预约</td><td>15:00–19:30时段景交85折；18:20停售；分区管理别越界</td></tr>
+  <tr><td><b>翡翠湖</b>(大柴旦)</td><td class="mono">50＋小火车60</td><td>现场（随拼车团）</td><td>07:30–20:00；上午光线最佳</td></tr>
+  <tr><td><b>察尔汗盐湖</b></td><td class="mono">约100（含景交）</td><td>「青海文旅」小程序分时预约</td><td>需司机有盐厂通行资质；17:00后光线最佳</td></tr>
+  <tr><td>青海湖·二郎剑</td><td class="mono">90</td><td>「青海湖景区」公众号/「智游青海湖」小程序</td><td>9点前入园错峰；观光车游船单独购</td></tr>
+  <tr><td>茶卡盐湖</td><td class="mono">60＋小火车往返100</td><td>景区公众号/OTA</td><td>48小时内可多次入园；天空之镜要无风晴天</td></tr>
+  <tr><td>塔尔寺（备选）</td><td class="mono">70</td><td>现场可购/OTA</td><td>导游160元/队很值；殿内禁拍</td></tr>
+  <tr><td>青海省博物馆</td><td class="mono">免费</td><td>「青海省博物馆」公众号预约</td><td><b>周一闭馆</b>；暑期开到18:00</td></tr>
+</table></div>
+<div class="warn"><b>莫高窟只认官方渠道</b>：敦煌研究院2026年7月17日盖章声明点名——美团/携程/飞猪/抖音/小红书/闲鱼/淘宝/快手上所有代售莫高窟门票均属非法渠道，有无法检票风险。别从任何OTA买莫高窟票。</div>
+
+<h2 id="hotel">住宿（预算：3人合计 ¥300–600/晚）</h2>
+<p class="sub">通用纪律：青海甘肃的连锁酒店<b>普遍"不可加床"</b>——要么订真·三人间/家庭房，要么直接开两间；只订<b>可免费取消</b>的房源（宁贵50元）；下单后<b>打酒店电话</b>确认"3位成人入住"＋晚到保留（尤其8.14敦煌约21:00才到）；携程选店看分项评分 → 美团比价下单；别微信转账给老板。</p>
+
+<div class="hotel"><b class="nm">西宁 · 8.10＋8.11 两晚</b> <span class="chip">预算宽裕</span><br>
+  推荐住<b>火车站前</b>（互助路一带，去莫家街打车15分钟）：<b>怡莱·火车站店</b>（两间约<span class="price">¥300–500</span>，含清真早餐）／<b>锦江之星·火车站广场店</b>（4.6分/1371条，2023年开业）／<b>华宿酒店</b>（有家庭房＋免费早餐洗衣）。想住夜市旁：<b>里好酒店·莫家街店</b>（有宽敞三人房，隔音一般）。<br><small>8.10/8.11是周一周二非周末，西宁供给全线最足（约1469家），今天订完全来得及。</small></div>
+
+<div class="hotel"><b class="nm">德令哈 · 8.12 一晚</b> <span class="chip">全线最松</span><br>
+  <b>必须住市区巴音河沿岸，别住站前</b>（德令哈站离市区6–7km，1路公交20:00收班——比日落还早）。首选：<b>森元巴音河酒店</b>（有<b>氧吧三人房</b>·全房弥散供氧，约<span class="price">¥350–450</span>）；品质选<b>全季·巴音河畔店</b>（4.8分/1191条，¥313起，马路对面就是巴音河，不可加床需订家庭房）；省钱选<b>7天优品·中心广场店</b>两间（约<span class="price">¥230–260</span>）。备选：汉庭优佳·景华湾（4.7分/1299条，有家庭房，楼下超市，步行到海子诗歌馆）。</div>
+
+<div class="hotel"><b class="nm">格尔木 · 8.13 一晚</b> <span class="chip">正好偏紧·今天锁房</span><br>
+  住<b>站前步行圈</b>：<b>汉庭·江源南路火车站店</b>（4.8分/992条，2024年装修，<b>有家庭房</b>，步行960m）／<b>H酒店·火车站店</b>（4.7分/983条，步行590m，有家庭房）。市中心破例选项：<b>如家neo·昆仑中路店</b>（4.9分，2025年新开，家庭房＋<b>可供氧房</b>，<b>免费接送站</b>）。家庭房约<span class="price">¥350–600</span>。<small>格尔木是环线＋进藏双节点，家庭房每家只有几间，用"可免费取消"先锁再比价。8.13周四非周末是利好。</small></div>
+
+<div class="hotel"><b class="nm">敦煌 · 8.14–8.16 三晚</b> <span class="chip">最紧·今天必订</span><br>
+  <b>三晚全住市区沙洲夜市/党河一带</b>（鸣沙山散场有免费公交回市区，民宿村晚上没吃的、敦煌站片区有飞机噪音）。舒适档：<b>敦煌云天国际酒店·沙州夜市店</b>（4.8分/3900条，有家庭房，<b>免费接站</b>，约¥416起）／<b>阳光·城市舒眠PLUS·沙州夜市店</b>（4.7分，明确有<b>三人间＋家庭房</b>）。省钱档：<b>南仓渡客栈</b>（距夜市258米，住客评"闹中取静"）。<small>8.14周五/8.15周六是敦煌全年最旺的周末之一，攻略口径要提前30–45天——今天是底线，订<b>两间标间＋可免费取消</b>最稳；要求非临街房。</small></div>
+
+<h2 id="budget">预算估算（每人）</h2>
+<div class="tblbox"><table>
+  <tr><th>项目</th><th class="mono">明细</th><th class="mono">每人约</th></tr>
+  <tr><td>火车4段</td><td class="mono">271＋134＋57＋343(硬卧)</td><td class="mono">805</td></tr>
+  <tr><td>8.11 青海湖＋茶卡</td><td class="mono">拼车~200＋门票90＋60（小火车+100可选）</td><td class="mono">350–450</td></tr>
+  <tr><td>8.13 察尔汗</td><td class="mono">包车摊~100＋门票景交~100</td><td class="mono">200</td></tr>
+  <tr><td>8.14 拼车穿越</td><td class="mono">车340＋翡翠湖110＋黑独山51</td><td class="mono">500</td></tr>
+  <tr><td>敦煌门票</td><td class="mono">莫高窟238＋鸣沙山110＋骆驼~120(可选)</td><td class="mono">350–470</td></tr>
+  <tr><td>住宿7晚</td><td class="mono">3人合计约2800–3300</td><td class="mono">950–1100</td></tr>
+  <tr><td>餐饮8天</td><td class="mono">人均100–130/天</td><td class="mono">800–1050</td></tr>
+  <tr><td>市内交通杂项</td><td class="mono">打车/公交/鞋套等</td><td class="mono">200–300</td></tr>
+  <tr><td><b>合计</b></td><td></td><td class="mono"><b>≈4200–4900</b></td></tr>
+</table></div>
+<p class="sub">若返程改软卧＋199，改D2739动车＋206，改飞机约＋600–950。砍掉青海湖茶卡日约省400。</p>
+
+<h2 id="risk">风险与提醒</h2>
+<h3>高原反应（本行程最重要的一条）</h3>
+<ul>
+  <li>海拔曲线：西安400 → 西宁2261 → (茶卡3059) → 德令哈2980 → 格尔木2780 → 大柴旦3100 → 当金山口3648（过路）→ 敦煌1140。缓升后骤降，方向科学，<b>别倒着走</b>。</li>
+  <li><b>8.12德令哈第一夜是全程风险峰值</b>（首次在高处过夜）：当晚不饮酒、不洗过烫的澡、七分饱、多喝水、早睡。次日互相问一句有没有头痛/失眠/食欲差。</li>
+  <li>药物：<b>乙酰唑胺</b>125mg每日2次，8.8–8.9开始服（处方药；<b>磺胺过敏者绝对禁用</b>）；红景天需提前7–15天，现在吃已无意义。德令哈/格尔木便利店买2–3罐便携氧（30–50元）随身。</li>
+  <li>铁律：症状持续加重（头痛＋呕吐）＝立即下撤降海拔，这条线任何一点6小时内都能回到2000m以下。</li>
+</ul>
+<h3>天气与光线</h3>
+<ul>
+  <li>抗阴天排序：<b>黑独山 &gt; 翡翠湖 &gt; 察尔汗</b>。察尔汗的天空之镜要"无风＋晴"同时成立，8月格尔木多风——前一晚风力&gt;3级就放弃，别顶风去。</li>
+  <li>青海夜雨率56%：预报里的"阴"常常只是高云，看<b>降水概率是否&gt;40%</b>再决定改不改行程。</li>
+  <li>日落速查（当地天黑比日落再晚约30分钟）：西宁8.10 <span class="mono">20:12</span>｜茶卡8.11 <span class="mono">20:22</span>｜德令哈8.12 <span class="mono">20:29</span>｜察尔汗8.13 <span class="mono">20:35</span>｜翡翠湖8.14 <span class="mono">20:36</span>｜敦煌8.15/16 <span class="mono">20:41/20:40</span>（日出约06:54）。</li>
+  <li>敦煌白天33–36℃但夜里只有15–18℃；青海段夜间约10℃——薄羽绒/抓绒必带。全线UV极强，SPF50+每2小时补。</li>
+</ul>
+<h3>红线与避坑</h3>
+<ul>
+  <li>可鲁克湖—托素湖已列入海西州2026年禁止非法穿越名录（罚款/扣车/失信名单）：在任何景区<b>只走正规栈道</b>，别跟司机为机位下野路。</li>
+  <li>柏树山→哈拉湖/琉璃湖方向道路汛期封闭（7.15起）；托素湖·外星人遗址暂停营业——别信老攻略。</li>
+  <li>莫高窟票只从官方小程序买；水井巷买干果当面复秤；别跟出租车司机推荐的餐馆走；鸣沙山中门进出最省。</li>
+  <li>一日游退改：出行前2天00:00前免手续费、前1天收50%、当天不退——<b>拼车团要提前≥2天下单</b>。</li>
+  <li>常用电话：莫高窟 4008-333-715｜鸣沙山 400-118-3388｜青海湖 0974-8519688｜投诉 12315/12301。</li>
+</ul>
+
+<div class="foot">
+  <p>数据截至 2026-08-06：车次与余票为当日 16:26–16:40（北京时间）12306 官方接口只读实查；门票政策以敦煌研究院、甘肃文旅、海西州文旅等官方公告为准；价格类信息为攻略参考价，下单以实时为准。本页由 13 个调研 agent 的 63 万 token 检索交叉核验生成（含 4 路独立复核）。</p>
+  <p>祝三位玩得开心——姐姐，今夜我在德令哈 🌾</p>
+</div>
+
+</div>
+
+</body>
+</html>
