@@ -306,6 +306,8 @@
     <h2>📰 News</h2>
     <div class="news">
       <ul>
+        <li><span class="date">2026.09</span><span>📄 New preprint <a href="https://arxiv.org/abs/2609.39926" target="_blank">OmniHSR</a> released on arXiv: a single model that super-resolves unseen hyperspectral sensors at any scale.</span></li>
+        <li><span class="date">2026.09</span><span>🔄 <a href="https://arxiv.org/abs/2601.21338" target="_blank">SR²-Net</a> v2 released on arXiv with a new title: <em>Correcting Spectra Outside the Backbone: A Model-Agnostic Rectifier for Hyperspectral Image Super-Resolution</em>.</span></li>
         <li><span class="date">2026.04</span><span>🎉 ICME 2026 acceptance notification.</span></li>
         
       </ul>
@@ -314,6 +316,22 @@
 
 <section>
     <h2>📑 Research Projects</h2>
+
+    <div class="project-card">
+      <div class="project-thumb" style="background-image:url('assets/omnihsr-framework.png');background-size:cover;background-position:center;" title="OmniHSR framework"></div>
+      <div>
+        <p class="project-title">📄 Super-Resolving Unseen Hyperspectral Sensors at Any Scale via Spatial Operators</p>
+        <p class="project-venue">
+          Under review.
+        </p>
+        <p class="project-desc">
+          OmniHSR is a single model for cross-sensor, arbitrary-scale hyperspectral super-resolution that predicts band-shared spatial operators rather than spectral values. Cross-Spectral Mapping (<strong>CSM</strong>) resamples inputs with any number of bands to fixed reference positions and predicts local operators with Gaussian supports. Continuous Operator-Field Reconstruction (<strong>COFR</strong>) composes these operators into a continuous field and applies them to all original bands for arbitrary-scale reconstruction. Trained solely on ARAD with only 0.538M parameters, it outperforms all directly transferred baselines on six unseen datasets without target-domain training data or adaptation, with up to 36&times; faster inference.
+        </p>
+        <p class="project-links">
+          <a href="https://arxiv.org/abs/2609.39926" target="_blank">[arXiv]</a>
+        </p>
+      </div>
+    </div>
 
     <div class="project-card">
       <div class="project-thumb" style="background-image:url('https://github.com/JXVision/DTP/raw/main/assets/framework.png');background-size:cover;background-position:center;" title="DTP framework"></div>
@@ -337,12 +355,12 @@
     <div class="project-card">
       <div class="project-thumb" style="background-image:url('assets/sr2net-pipeline.png');background-size:cover;background-position:center;" title="SR²-Net pipeline"></div>
       <div>
-        <p class="project-title">📄 SR²-Net: A General Plug-and-Play Model for Spectral Refinement in Hyperspectral Image Super-Resolution</p>
+        <p class="project-title">📄 Correcting Spectra Outside the Backbone: A Model-Agnostic Rectifier for Hyperspectral Image Super-Resolution</p>
         <p class="project-venue">
           Under review.
         </p>
         <p class="project-desc">
-          A plug-and-play spectral refinement module that integrates seamlessly with existing HSI super-resolution frameworks. We design a hierarchical spectral self-attention (H-S³A) mechanism and a multi-scale channel refinement (MCR) block to recover fine spectral details.
+          SR²-Net is a model-agnostic rectifier that corrects residual spectral errors using only the backbone's output, leaving the backbone architecture untouched. Following an enhance-then-rectify pipeline, Hierarchical Spectral-Spatial Synergy Attention (<strong>H-S³A</strong>) reinforces cross-band interactions, while Mode-Constrained Rectification (<strong>MCR</strong>) confines the correction to a learned compact spectral subspace. Across five CNN, Transformer, and diffusion backbones, one fixed configuration improves spectral fidelity in every reported setting; averaged over thirty in-domain settings, it removes 22.6% of the residual spectral error with only 0.048M extra parameters.
         </p>
         <p class="project-links">
           <a href="https://arxiv.org/abs/2601.21338" target="_blank">[arXiv]</a>
@@ -389,6 +407,29 @@
 
     <div class="pub">
       <p class="pub-title">
+        Super-Resolving Unseen Hyperspectral Sensors at Any Scale via Spatial Operators
+      </p>
+      <p class="pub-authors">
+        <span class="me">Ji-Xuan He</span>,
+        Guohang Zhuang,
+        Bo Junge,
+        Tingyi Li,
+        Chen Ling,
+        Miaomiao Cai,
+        Yanan Qiao<sup>*</sup>,
+        Xiujin Liu,
+        Junfeng Fang
+      </p>
+      <p class="pub-venue">
+        Under review.
+      </p>
+      <p class="pub-links">
+        <a href="https://arxiv.org/abs/2609.39926" target="_blank">[arXiv]</a>
+      </p>
+    </div>
+
+    <div class="pub">
+      <p class="pub-title">
         Dual-Path Learning based on Frequency Structural Decoupling and Regional-Aware Fusion for Low-Light Image Super-Resolution
       </p>
       <p class="pub-authors">
@@ -413,10 +454,17 @@
 
     <div class="pub">
       <p class="pub-title">
-        SR²-Net: A General Plug-and-Play Model for Spectral Refinement in Hyperspectral Image Super-Resolution
+        Correcting Spectra Outside the Backbone: A Model-Agnostic Rectifier for Hyperspectral Image Super-Resolution
       </p>
       <p class="pub-authors">
-        <span class="me">Ji-Xuan He</span><sup>&dagger;</sup>, Guohang Zhuang<sup>&dagger;</sup>, Junge Bo<sup>*</sup>, Tingyi Li, Chen Ling, Yanan Qiao<sup>*</sup>
+        <span class="me">Ji-Xuan He</span><sup>&dagger;</sup>,
+        Guohang Zhuang<sup>&dagger;</sup>,
+        Bo Junge,
+        Chen Ling,
+        Tingyi Li,
+        Yanan Qiao<sup>*</sup>,
+        Miaomiao Cai,
+        Junfeng Fang
       </p>
       <p class="pub-venue">
         Under review.
@@ -458,7 +506,7 @@
   </section>
 
   <footer>
-    © 2026 Ji-Xuan He &nbsp;·&nbsp; Last updated: April 2026
+    © 2026 Ji-Xuan He &nbsp;·&nbsp; Last updated: October 2026
   </footer>
 </div>
 </body>
